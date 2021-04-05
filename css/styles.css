@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 /* Typography */
 body {
   font-family: Times, "Times New Roman", serif;
@@ -23,8 +27,15 @@ h6 {
   font-weight: 300;
 }
 
+h1 {
+  font-size: 7rem;
+  margin: 0;
+}
+
 /* Collapsible */
-.collapsible {
+/* TODO: change "collapsible" to container in html pages */
+.collapsible,
+.container {
   max-width: 1024px;
   margin: auto;
   overflow: hidden;
@@ -93,4 +104,20 @@ h6 {
 .sub-collapsible--open .sub-collapsible__heading {
   transition: transform 0.5s;
   transform: translateX(-50%);
+}
+
+/* Hero Block */
+.hero__description {
+  font-size: 2rem;
+}
+
+@media screen and (min-width: 800px) {
+  .hero {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .hero__header {
+    margin-right: 5rem;
+  }
 }
