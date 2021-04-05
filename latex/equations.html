@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LaTeX Equations</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="../clipboard.js-master/dist/clipboard.min.js"></script>
+</head>
+<body>
+    <h1><a target="_self" href="https://www.fordnotes.org">Notebook</a></h1>
+    <h2>LaTeX</h2>
+    <h3>Equations</h3>
+    <button id="copyEquationCode" data-clipboard-target="#equationCode">Copy Code</button>
+    <code id = "equationCode">\begin{equation}
+    EQUATION\label{LABEL}
+\end{equation}</code>
+</body>
+<script>
+    new ClipboardJS('#copyEquationCode')
+</script>
+</html>

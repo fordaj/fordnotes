@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>4-Bit Parallel Load-Enabled Register</title>
+        <link rel="stylesheet" href="../style.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    </head>
+    <body>
+		<h1><a target="_self" href="https://www.fordnotes.org">Notebook</a></h1>
+		<h2>Hardware Description Language</h2>
+		<h3>4-Bit Parallel Load-Enabled Register</h3>
+        <p>A load-enabled parallel 4-bit register, realized in Verilog:</p>
+        <div style="background: #f0f3f3; overflow:auto;width:auto;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #006699; font-weight: bold">module</span> fourBitRegister(<span style="color: #336600">D</span>, rst, clk, <span style="color: #336600">E</span> , <span style="color: #336600">Q</span>);
+        <span style="color: #006699; font-weight: bold">input</span> [<span style="color: #FF6600">3</span><span style="color: #555555">:</span><span style="color: #FF6600">0</span>] <span style="color: #336600">D</span>;
+        <span style="color: #006699; font-weight: bold">input</span> rst, clk, <span style="color: #336600">E</span>;
+        <span style="color: #006699; font-weight: bold">output</span> <span style="color: #007788; font-weight: bold">reg</span> [<span style="color: #FF6600">3</span><span style="color: #555555">:</span><span style="color: #FF6600">0</span>] <span style="color: #336600">Q</span>;
+        
+        <span style="color: #006699; font-weight: bold">always</span> @(<span style="color: #006699; font-weight: bold">negedge</span> rst, <span style="color: #006699; font-weight: bold">posedge</span> clk)
+            <span style="color: #006699; font-weight: bold">if</span> (<span style="color: #555555">!</span>rst)
+                <span style="color: #336600">Q</span> <span style="color: #555555">&lt;=</span> <span style="color: #FF6600">0</span>;
+            <span style="color: #006699; font-weight: bold">else</span> <span style="color: #006699; font-weight: bold">if</span> (<span style="color: #336600">E</span>)
+                <span style="color: #336600">Q</span> <span style="color: #555555">&lt;=</span> <span style="color: #336600">D</span>;
+<span style="color: #006699; font-weight: bold">endmodule</span>
+</pre></td></tr></table></div>
+    <a href="fourBitRegister.v" download><img src = "../icons/downloadV.png" width="40px"></a>
+    <p>And its corresponding test bench:</p>
+    <div style="background: #f0f3f3; overflow:auto;width:auto;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #006699; font-weight: bold">module</span> fourBitRegister_tb();
+	<span style="color: #007788; font-weight: bold">reg</span> rst, clk, <span style="color: #336600">E</span>;
+	<span style="color: #007788; font-weight: bold">reg</span> [<span style="color: #FF6600">3</span><span style="color: #555555">:</span><span style="color: #FF6600">0</span>] <span style="color: #336600">D</span>;
+	<span style="color: #007788; font-weight: bold">wire</span> [<span style="color: #FF6600">3</span><span style="color: #555555">:</span><span style="color: #FF6600">0</span>] <span style="color: #336600">Q</span>;
+ 
+	fourBitRegister #() <span style="color: #336600">DUT</span> (
+		.rst(rst),
+		.clk(clk),
+		.<span style="color: #336600">E</span>(<span style="color: #336600">E</span>),
+		.<span style="color: #336600">D</span>(<span style="color: #336600">D</span>),
+		.<span style="color: #336600">Q</span>(<span style="color: #336600">Q</span>)
+  	);
+ 
+  	<span style="color: #006699; font-weight: bold">initial</span> <span style="color: #006699; font-weight: bold">begin</span>
+    					clk <span style="color: #555555">=</span> <span style="color: #FF6600">0</span>; rst <span style="color: #555555">=</span> <span style="color: #FF6600">1</span>; <span style="color: #336600">E</span> <span style="color: #555555">=</span> <span style="color: #FF6600">0</span>; <span style="color: #336600">D</span> <span style="color: #555555">=</span> <span style="color: #FF6600">4&#39;b1100</span>;
+		#<span style="color: #FF6600">500</span>  @(<span style="color: #006699; font-weight: bold">posedge</span> clk) <span style="color: #336600">E</span> <span style="color: #555555">=</span> <span style="color: #FF6600">1</span>;
+		#<span style="color: #FF6600">10</span>	  @(<span style="color: #006699; font-weight: bold">posedge</span> clk) <span style="color: #336600">D</span> <span style="color: #555555">=</span> <span style="color: #FF6600">4&#39;b1100</span>;
+		#<span style="color: #FF6600">500</span>  @(<span style="color: #006699; font-weight: bold">posedge</span> clk) <span style="color: #336600">D</span> <span style="color: #555555">=</span> <span style="color: #FF6600">4&#39;b0001</span>;
+		#<span style="color: #FF6600">500</span>  @(<span style="color: #006699; font-weight: bold">posedge</span> clk) <span style="color: #336600">D</span> <span style="color: #555555">=</span> <span style="color: #FF6600">4&#39;b1110</span>;
+		#<span style="color: #FF6600">500</span>  @(<span style="color: #006699; font-weight: bold">posedge</span> clk) rst <span style="color: #555555">=</span> <span style="color: #FF6600">0</span>;
+		#<span style="color: #FF6600">500</span>			<span style="color: #336666">$finish</span>;
+	<span style="color: #006699; font-weight: bold">end</span>
+	<span style="color: #006699; font-weight: bold">always</span>
+		#<span style="color: #FF6600">10</span> 			clk <span style="color: #555555">=!</span> clk;
+ 
+<span style="color: #006699; font-weight: bold">endmodule</span>
+</pre></td></tr></table></div>
+<a href="fourBitRegister_tb.v" download><img src = "../icons/downloadV.png" width="40px"></a>
+<p>The waveform produced:</p>
+<img style = "width:100%" src="fourBitRegister.png">
+    </body>
+</html>

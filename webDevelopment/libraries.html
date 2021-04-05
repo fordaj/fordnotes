@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Libraries</title>
+        <link rel="stylesheet" href="../" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true
+                }
+            });
+        </script>
+        <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+    </head>
+    <body>
+		<h1><a target="_self" href="https://www.fordnotes.org">Notebook</a></h1>
+		<h2>Web Development</h2>
+		<h3>Libraries</h3>
+        <h4>MathJax</h4>
+        <p><a href="https://www.mathjax.org/" target="_blank">MathJax</a> is a powerful inline LaTeX equation editor. Other services return low level images, while MathJax prints out the equation in an SVG or other hi-res capable format.</p>
+        <p>To use in an HTML document, add the following lines to the head element (credit to <a href="https://tex.stackexchange.com/questions/27633/mathjax-inline-mode-not-rendering">Patrick Oscity</a>):</p>
+        <!-- HTML generated using hilite.me --><div><pre style="margin: 0; line-height: 125%"><span style="color: #330099; font-weight: bold">&lt;script </span><span style="color: #330099">type=</span><span style="color: #CC3300">&quot;text/x-mathjax-config&quot;</span><span style="color: #330099; font-weight: bold">&gt;</span>
+    MathJax.Hub.Config({
+        tex2jax<span style="color: #555555">:</span> {
+        inlineMath<span style="color: #555555">:</span> [ [<span style="color: #CC3300">&#39;$&#39;</span>,<span style="color: #CC3300">&#39;$&#39;</span>], [<span style="color: #CC3300">&quot;\\(&quot;</span>,<span style="color: #CC3300">&quot;\\)&quot;</span>] ],
+        processEscapes<span style="color: #555555">:</span> <span style="color: #006699; font-weight: bold">true</span>
+        }
+    });
+<span style="color: #330099; font-weight: bold">&lt;/script&gt;</span>
+<span style="color: #330099; font-weight: bold">&lt;script </span><span style="color: #330099">type=</span><span style="color: #CC3300">&quot;text/javascript&quot;</span>
+    <span style="color: #330099">src=</span><span style="color: #CC3300">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span><span style="color: #330099; font-weight: bold">&gt;</span>
+<span style="color: #330099; font-weight: bold">&lt;/script&gt;</span>
+</pre></div>
+
+    <p>To use inline, simply enclose your LaTeX equation within dollar signs: \$y=mx+b\$ --> $y=mx+b$. To use on its own line, enclose in double dollar signs like this \$\$y=mx+b\$\$: $$y=mx+b$$ and keep typing in the same element.</p>
+    </body>
+</html>
