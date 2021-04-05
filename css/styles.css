@@ -30,36 +30,42 @@ h6 {
   overflow: hidden;
 }
 
-.sub-collapsible {
+.sub-collapsible,
+.collapsible__header {
   border-bottom: 1px solid;
 }
 
-.sub-collapsible__header {
+.sub-collapsible__header,
+.collapsible__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-left: 2rem;
 }
 
-.sub-collapsible__chevron {
+.sub-collapsible__chevron,
+.collapsible__chevron {
   width: 20px;
   height: 20px;
   transition: transform 0.4s;
   margin-right: 2rem;
 }
 
-.sub-collapsible__content {
+.sub-collapsible__content,
+.collapsible__content {
   max-height: 0;
   opacity: 0;
-  transition: opacity 0.4s, line-height 5s;
+  transition: opacity 0.4s;
 }
 
-.sub-collapsible--open + .sub-collapsible__content {
+.sub-collapsible--open + .sub-collapsible__content,
+.collapsible--open + .collapsible__content {
   max-height: 100%;
   opacity: 1;
 }
 
-.sub-collapsible--open .sub-collapsible__chevron {
+.sub-collapsible--open .sub-collapsible__chevron,
+.collapsible--open .collapsible__chevron {
   transform: rotate(90deg);
 }
 
