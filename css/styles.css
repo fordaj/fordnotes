@@ -22,3 +22,62 @@ h6 {
   font-family: Helvetica, Arial, Geneva, sans-serif;
   font-weight: 300;
 }
+
+/* Sub-Collapsible */
+.collapsible {
+  max-width: 1024px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.sub-collapsible {
+  border-bottom: 1px solid;
+}
+
+.sub-collapsible__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.sub-collapsible__chevron {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.4s;
+  margin-right: 2rem;
+}
+
+.sub-collapsible__content {
+  max-height: 0;
+  opacity: 0;
+  transition: opacity 0.4s, line-height 5s;
+}
+
+.sub-collapsible--open + .sub-collapsible__content {
+  max-height: 100%;
+  opacity: 1;
+}
+
+.sub-collapsible--open .sub-collapsible__chevron {
+  transform: rotate(90deg);
+}
+
+.sub-collapsible__heading-container {
+  text-align: left;
+  width: 100%;
+}
+
+.sub-collapsible--open .sub-collapsible__heading-container {
+  transition: transform 0.5s;
+  transform: translateX(50%);
+}
+
+.sub-collapsible__heading {
+  display: inline-block;
+}
+
+.sub-collapsible--open .sub-collapsible__heading {
+  transition: transform 0.5s;
+  transform: translateX(-50%);
+}
