@@ -1,0 +1,9 @@
+:root {
+  background-color: antiquewhite;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
