@@ -23,7 +23,7 @@ h6 {
   font-weight: 300;
 }
 
-/* Sub-Collapsible */
+/* Collapsible */
 .collapsible {
   max-width: 1024px;
   margin: auto;
@@ -56,6 +56,12 @@ h6 {
   max-height: 0;
   opacity: 0;
   transition: opacity 0.4s;
+  overflow: hidden;
+}
+
+.sub-collapsible__content {
+  width: 80%;
+  margin: auto;
 }
 
 .sub-collapsible--open + .sub-collapsible__content,
@@ -81,6 +87,7 @@ h6 {
 
 .sub-collapsible__heading {
   display: inline-block;
+  padding: 0 4rem;
 }
 
 .sub-collapsible--open .sub-collapsible__heading {
