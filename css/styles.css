@@ -15,6 +15,7 @@ html {
 /* Typography */
 body {
   font-family: Times, "Times New Roman", serif;
+  font-size: 2rem;
 }
 
 h1,
@@ -120,4 +121,36 @@ h1 {
   .hero__header {
     margin-right: 5rem;
   }
+}
+
+/* Nav Bar */
+.nav__list {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav__item {
+  list-style-type: none;
+}
+
+.nav__item > a {
+  color: #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: Helvetica, Arial, Geneva, sans-serif;
+  font-weight: 300;
+  padding: 2rem;
+}
+
+.nav__item > a:hover {
+  color: #444;
+}
+
+/* TODO: replace with taller separator */
+.nav__item::after {
+  content: "|";
+}
+
+.nav__item:last-of-type:after {
+  content: "";
 }
