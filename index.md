@@ -1,5 +1,3 @@
-[Back](../index.md)
-
 # fordnotes
 
 ## [Command Line](Command_Line/index.md)

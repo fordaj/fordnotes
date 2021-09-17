@@ -4,6 +4,7 @@
 
 - [NAS](NAS.md)
 - [OS Formatting](OS_Formatting.md)
-- [Raspberry Pi](Raspberry_Pi.md)
+- [PiHole](PiHole.md)
+- [PiVPN](PiVPN.md)
 - [SSH](SSH.md)
 - [Smart Home](Smart_Home.md)
