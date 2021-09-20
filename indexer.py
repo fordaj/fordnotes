@@ -4,7 +4,7 @@ from pathlib import Path
 PY_FILE_PATH = afpy.Cli().cwd(__file__)
 FILES = 'Files'
 
-files_to_ignore = ['.DS_Store', '.git', '.vscode', 'indexer.py', 'index.md', 'script.js']
+files_to_ignore = ['.DS_Store', '.git', '.gitignore', '.vscode', 'indexer.py', 'index.md', 'script.js']
 
 def index(dir_path, file_structure):
     file_structure[FILES] = []
