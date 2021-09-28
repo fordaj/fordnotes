@@ -1,6 +1,6 @@
 [Back](../index.md)
 
-# .gitignore
+# gitignore
 
 - [DS Store](DS_Store.md)
 - [vscode](vscode.md)

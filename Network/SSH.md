@@ -73,6 +73,9 @@ ssh-add C:\Users\USERNAME\ssh\id_rsa
 
 1. Run `ssh-copy-id` with the following format:
 
-```bash
-ssh-copy-id -i ~/.ssh/KEYNAME user@host
-```
+    Location: <input class="copy_location" placeholder="~/.ssh/key_name" onkeyup="renderInput('copy_location')">
+
+    Destination: <input class="copy_destination" placeholder="user@host" onkeyup="renderInput('copy_destination')">
+<pre>
+ssh-copy-id -i <span class="copy_location">~/.ssh/key_name</span> <span class="copy_destination">user@host</span>
+</pre>

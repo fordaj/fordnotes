@@ -2,4 +2,6 @@
 
 # git
 
-- [](.gitconfig.md)
+## [gitignore](gitignore/index.md)
+
+- [gitconfig](gitconfig.md)
