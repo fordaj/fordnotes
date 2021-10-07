@@ -35,3 +35,13 @@ conda install python=3.10.0
 ```bash
 pip install numpy
 ```
+
+## Export an Environment
+<pre>
+conda <span class="name">newEnvironment</span> export > <span class="name">newEnvironment</span>.yml
+</pre>
+
+## Import an Environment
+<pre>
+conda create -f <span class="name">newEnvironment</span>.yml
+</pre>
