@@ -25,3 +25,13 @@ To create an environment, run the following command:
 <pre>
 conda activate <span class="name">newEnvironment</span>
 </pre>
+
+## Install Python
+```bash
+conda install python=3.10.0
+```
+
+## Install Python Package
+```bash
+pip install numpy
+```
