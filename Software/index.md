@@ -1,6 +1,6 @@
 [Back](../index.md)
 
-# Coding
+# Software
 
 ## [C++](C++/index.md)
 

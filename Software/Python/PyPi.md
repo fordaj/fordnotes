@@ -2,6 +2,19 @@
 
 # PyPi
 
+## Required Packages
+```bash
+pip install wheel 
+&& pip install twine
+&& rm -rf build
+&& rm -rf dist
+&& python setup.py sdist bdist_wheel
+```
+
+## Build
+```
+```
+
 ## Add an API Token
 For username/passwordless updates!
 1. Navigate to [https://pypi.org/manage/account/token/](https://pypi.org/manage/account/token/)

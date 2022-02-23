@@ -5,7 +5,7 @@
 `miniconda` is a stripped-down version of `Anaconda` that relies only on terminal commands (on Mac, use the `zsh` terminal). It can be installed with a bash file or a `.pkg` file from [their website](https://docs.conda.io/en/latest/miniconda.html).
 
 # Update Miniconda
-Run the following terminal command to update `miniconda`:
+Run the following `conda` command in Terminal/Command Prompt to update `miniconda`:
 ```bash
 conda update -n base -c defaults conda
 ```
@@ -33,15 +33,31 @@ conda install python=3.10.0
 
 ## Install Python Package
 ```bash
-pip install numpy
+conda install numpy
 ```
 
 ## Export an Environment
 <pre>
-conda <span class="name">newEnvironment</span> export > <span class="name">newEnvironment</span>.yml
+conda list --explicit > <span class="name">newEnvironment</span>.txt
 </pre>
 
 ## Import an Environment
+Note: May need to execute these commands with elevated permissions (either prefix with `sudo` or run `Command Prompt` as administrator)
 <pre>
-conda create -f <span class="name">newEnvironment</span>.yml
+conda create --name <span class="name">newEnvironment</span> --file <span class="name">newEnvironment</span>.txt
+</pre>
+
+## Update an Environment
+<pre>
+conda update <span class="name">newEnvironment</span> --all
+</pre>
+
+## Delete an Environment
+To delete an environment:
+<pre>
+conda env remove --name <span class="name">newEnvironment</span>
+</pre>
+To verify it is deleted:
+<pre>
+conda info --envs
 </pre>
