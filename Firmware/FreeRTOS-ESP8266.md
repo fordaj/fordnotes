@@ -30,7 +30,7 @@ sudo adduser $USER dialout
 ```
 
 ## Add paths
-
+Add the following lines to the `~/.bashrc` file:
 ```
 export IDF_PATH=~/esp/ESP8266_RTOS_SDK
 export PATH=~/esp/xtensa-lx106-elf-gcc8_4_0-esp-2020r3-linux-amd64/xtensa-lx106-elf/bin:$PATH

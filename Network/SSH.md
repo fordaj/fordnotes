@@ -28,6 +28,25 @@ Password: <input class="password" placeholder="password" onkeyup="renderInput('p
 ssh-keygen -t <span class="key_type">RSA</span> -b <span class="key_bits">4096</span> -C "<span class="key_comment">myEmail@domain.com</span>" -f <span class="key_location">~/.ssh/key_name</span> -N <span class="password">password</span>
 </pre>
 
+## Add Key to `ssh-agent`
+### Windows 10
+1. Open `Git Bash`
+
+2. Start the `git` `ssh-agent`
+```
+eval $(ssh-agent)
+```
+
+3. Add key to ssh credentials
+```
+ssh-add key_name
+```
+
+4. To force `git` on Windows to use the OpenSSH command, configure it with a git command in PowerShell as admin:
+```
+git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe
+```
+
  ## Keychain Manager
 
 Add the following to the bottom of your `~/.ssh/config` file:

@@ -12,5 +12,7 @@
 
 ## [Software](Software/index.md)
 
+## [Virtual Machines](Virtual_Machines/index.md)
+
 ## [git](git/index.md)
 
