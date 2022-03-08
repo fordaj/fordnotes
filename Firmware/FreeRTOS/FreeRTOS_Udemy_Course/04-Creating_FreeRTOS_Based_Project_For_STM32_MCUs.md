@@ -106,7 +106,7 @@ Time base: System tick timer
 
 3. `configCHECK_FOR_STACK_OVERFLOW` --> 0
 
-
+4. `configUSE_IDLE_HOOK` --> 0
 
 # Time base selection for STM32 + FreeRTOS project
 
