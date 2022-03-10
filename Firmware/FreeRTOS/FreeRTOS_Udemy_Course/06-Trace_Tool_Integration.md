@@ -1,3 +1,5 @@
+[Back](index.md)
+
 # Trace tool download
 
 - [SEGGER SystemView Software v3.20](https://www.segger.com/downloads/systemview/) (host)
@@ -260,3 +262,57 @@ ThirdParty/SEGGER/Config
     5. Export 4095 bytes from this address onwards as "Raw Binary" titled "001.SVdat"
 
     6. Data can now be imported to SEGGER SystemView
+
+
+# Analyzing exercise 001 using SEGGER trace
+
+1. Hide all windows that are not the event list
+
+2. The remaining window is the event list
+
+3. Open the timeline window - it shows task behavior. Notice the `SysTick` and the `Scheduler` that run prior to each task switch
+
+4. Open the CPU Load window - it shows that the CPU is under full load when tasks are running
+
+    - Because they are equal priority, the load distribution is almost identical
+
+5. Open the "Contexts" window
+
+    - Note the Priority level under "Type" column
+
+    - Note the stack size and starting addresses
+
+# Analyzing cooperative scheduling trace
+
+1. Enable **Cooperative Scheduling**
+
+    - `FreeRTOSConfig.h` > `configUSE_PREEMPTION` --> 0
+
+    - `main.c` > `USER CODE BEGIN 4` > Uncomment `taskYIELD();`
+
+2. Build, download to target, run for a few seconds, export memory file, open in SystemView
+
+3. Notice that SysTick still happens every 1ms, but does not trigger the scheduler, which only runs once at the beginning
+
+# Passing `printf()` Statements to SEGGER SystemView
+
+- Following the *Segger SystemView User Guide*, there is a function called `SEGGER_SYSVIEW_PrintfTarget()`
+
+1. Replace the `printf()` function in our task handlers with `SEGGER_SYSVIEW_PrintfTarget()` functions
+
+    - Format the string as follows:
+
+        ```c
+        static void task1_handler(void* parameters)
+        {
+
+        char msg[100];
+
+        while(1)
+        {
+            snprintf(msg, 100, "%s\n", (char*)parameters);
+            SEGGER_SYSVIEW_PrintfTarget(msg); // Print to SEGGER SystemView
+            taskYIELD();
+        }
+        }
+        ```

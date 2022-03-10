@@ -1,3 +1,5 @@
+[Back](index.md)
+
 - `configASSERT()` (*function*): Triggers an infinite loop if the handler is not provided properly.
     - Example: If `status` does not return a success flag (`pdPASS`), `configASSERT` will loop.
     ```c
@@ -28,3 +30,7 @@
   - Does not return
   
     - Exception: Insufficient memory
+
+- **Time Slice**: Amount of time between 2 kernel tick interrupts, which is dependent upon the value of `configTICK_RATE_HZ`
+
+- **SVC**: Supervisor Call

@@ -2,6 +2,8 @@
 
 ## [Command Line](Command_Line/index.md)
 
+## [Dictionary](Dictionary/index.md)
+
 ## [Firmware](Firmware/index.md)
 
 ## [Network](Network/index.md)

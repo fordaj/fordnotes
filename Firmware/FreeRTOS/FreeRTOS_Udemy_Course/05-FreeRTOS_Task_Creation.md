@@ -91,10 +91,15 @@ BaseType_t xTaskCreate(
   TaskHandle_t task1_handle;
   TaskHandle_t task2_handle;
   
-  BaseType_t status;
+  BaseType_t status; // Stores success/fail flags from xTaskCreate for configASSERT
+```
+9. Prototype the following task definitions in `USER CODE BEGIN PFP` (Private Function Prototypes)
+```c
+static void task1_handler(void* parameters);
+static void task2_handler(void* parameters);
 ```
 
-9. Define & validate the following tasks in `USER CODE BEGIN 2`
+10. Define & validate the following tasks in `USER CODE BEGIN 2`
 ```c
   status = xTaskCreate(task1_handler, "Task-1", 200, "Hello world from Task-1", 2, &task1_handle);
   configASSERT(status==pdPASS);
@@ -103,11 +108,6 @@ BaseType_t xTaskCreate(
   configASSERT(status==pdPASS);
 ```
 
-10. Prototype the following task definitions in `USER CODE BEGIN PFP` (Private Function Prototypes)
-```c
-static void task1_handler(void* parameters);
-static void task2_handler(void* parameters);
-```
 
 11. Define the tasks in `USER CODE BEGIN 4`
 ```c
