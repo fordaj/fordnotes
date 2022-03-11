@@ -117,3 +117,25 @@
     - Now, GNU C and Assembly paths can be exported to the workspace (`includepathsettings.xml`)
 
         - Remember to click "Apply" before "Export settings"
+
+4. Set `common` as a Source Directory
+
+    ```
+    [Right-click "002LED_Tasks] > Properties... > C/C++ General > Paths and Symbols > Source Files > Link...
+    ```
+
+5. Wire Circuitry
+
+    - I wired up a green, yellow, and red LED to 3 available pins with a 330ohm resistor between each LED's positive lead and the pin.
+
+        ```
+        D2 - PA10 - Red_LED
+        D4 - PB5  - Yellow_LED
+        D5 - PB4  - Green_LED
+        ```
+
+    - In the `.ioc` file, those pins must be selected as "GPIO_Output" on the board graphic
+
+    - In the `.ioc` file, user labels can be applied for each pin
+
+        - Note: It helps to pre-type the label in a URL bar, and paste it in. For some reason, the typing in that field is very slow and difficult to use.
