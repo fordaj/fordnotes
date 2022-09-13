@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>fordnotes SSH: Key Generation</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+    <!-- BEGIN highlight.js -->
+    <link rel="stylesheet" href="/highlight/styles/default.min.css">
+    <script src="/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <!-- END highlight.js -->
+</head>
+<body>
+    <section class="left">
+        <iframe src="flow.html" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+    </section>
+    <section class="right">
+        <h1>SSH</h1>
+        <h2>Definitions</h2>
+        <div>
+            <ul>
+                <li><span class="term">Client</span>: The PC you're typing on</li>
+                <li><span class="term">Host</span>: The PC you're connecting to</li>
+                <li>Most SSH keys should have a password for security reasons.</li>
+            </ul>
+        </div>
+
+
+        <section class="key-generation">
+            <h2>Generate Key Pair on Client</h2>
+            <div class="versions">
+                <button class="version in-progress">Windows 10</button>
+                <button class="version in-progress">Windows 11</button>
+                <button class="version completed">MacOS Monterey</button>
+                <button class="version completed">Linux</button>
+                <button class="version completed">Raspbian</button>
+            </div>
+            <ul>
+                <li>The client should hold both keys</li>
+                <li>The public key is the only key allowed to be shared with others</li>
+            </ul>
+            <p>
+                Key Type: <input type="text" placeholder="RSA" class="key-type" onkeyup="renderInput('key-type')"><br>
+                Number of Bits: <input type="text" placeholder="4096" class="key-bits" onkeyup="renderInput('key-bits')"><br>
+                Comment: <input type="text" placeholder="myEmail@domain.com" class="key-comment" onkeyup="renderInput('key-comment')"><br>
+                Location: <input type="text" placeholder="~/.ssh/key_name" class="key-location" onkeyup="renderInput('key-location')"><br>
+                Password: <input type="text" placeholder="password" class="password" onkeyup="renderInput('password')">
+            </p>
+            <div class="command">
+                <pre><button onclick="copy(nextSibling)">Copy</button><code class="nohighlight">ssh-keygen -t <span class="key-type">RSA</span> -b <span class="key-bits">4096</span> -C "<span class="key-comment">myEmail@domain.com</span>" -f <span class="key-location">~/.ssh/key_name</span> -N <span class="password">password</span></code><p class="language">bash</p></pre> 
+            </div>
+        </section>
+
+        <h2>Add Key to <code>ssh-agent</code></h2>
+        <div class="versions">
+            <button class="version in-progress">Windows 10</button>
+            <button class="version in-progress">Windows 11</button>
+        </div>
+        <div class="command windows-10">
+            <ol>
+                <li>Open Git Bash</li>
+                <li>Start the git ssh-agent</li>
+                <pre><button onclick="copy(nextSibling)">Copy</button><code class="lanaguage-bash">eval $(ssh-agent)</code><p class="language">bash</p></pre>
+                <li>Add key to ssh credentials</li>
+                <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-bash">ssh-add key_name</code><p class="language">bash</p></pre>
+                <li>To force git on Windows to use the OpenSSH command, configure it with a git command in PowerShell as admin:</li>
+                <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-powershell">git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe</code><p class="language">bash</p></pre>
+            </ol>
+        </div>
+
+        <div class="MacOS">
+            <h2>Keychain Manager</h2>
+            <div class="versions">
+                <button class="version in-progress">MacOS Monterey</button>
+            </div>
+            <p class="content">Add the following to the bottom of your <span class="path">~/.ssh/config</span>~/.ssh/config file:</p>
+            <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-yaml" id="ssh-start-git-agent">Host *
+        AddKeysToAgent yes
+        UseKeychain yes</code><p class="language">YAML</p></pre>
+        </div>
+
+        <div class="windows-10">
+            <h2>Incoming SSH Connections</h2>
+            <div class="versions">
+                <button class="version in-progress">Windows 10</button>
+            </div>
+            <p class="content">
+                <ol>
+                    <li>Run <span class="software">PowerShell</span> as administrator</li>
+                    <li>Install <span class="software">OpenSSH.server</span></li>
+                    <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-powershell">Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0</code><p class="language">PowerShell</p></pre>
+                    <li>Start the <span class="software">SSHD</span> service (and verify it is running)</li>
+                    <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-powershell">Start-Service sshd</code><p class="language">PowerShell</p></pre>
+                    <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-powershell">Get-Service sshd</code><p class="language">PowerShell</p></pre>
+                    <li>Set the <span class="software">SSHD</span> service to run automatically on startup</li>
+                    <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-powershell">Set-Service ssh-agent -StartupType Automatic</code><p class="language">PowerShell</p></pre>
+                    <li>Add a key to the <span class="software">SSHD</span> service</li>
+                    <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-powershell">ssh-add C:\Users\USERNAME\ssh\id_rsa</code><p class="language">PowerShell, Bash</p></pre>
+                </ol>
+            </p>
+        </div>
+
+        <div class="windows-10 windows-11 macos-monterey linux raspbian">
+            <h2>Copy Public Key from Another PC</h2>
+            <div class="versions">
+                <button class="version in-progress">Windows 10</button>
+                <button class="version in-progress">Windows 11</button>
+                <button class="version in-progress">MacOS Monterey</button>
+                <button class="version in-progress">Linux</button>
+                <button class="version in-progress">Raspbian</button>
+            </div>
+            <p class="content">
+                <ol>
+                    <li>Run <span class="command">ssh-copy-id</span> with the following format:</li>
+                    Location: <input class="copy_location" placeholder="~/.ssh/key_name" onkeyup="renderInput('copy_location')"><br>
+                    Destination: <input class="copy_destination" placeholder="user@host" onkeyup="renderInput('copy_destination')">
+                    <pre><button onclick="copy(nextSibling)">Copy</button><code class="nohighlight">ssh-copy-id -i <span class="copy_location">~/.ssh/key_name</span> <span class="copy_destination">user@host</span></code><p class="language">bash</p></pre>
+                </ol>
+            </p>
+        </div>
+    </section>
+</body>
+<script>
+    function copy(element)
+    {
+        var str = element;
+        window.getSelection().selectAllChildren(str);
+        document.execCommand("Copy")
+    }
+    function resizeIframe(obj) {
+        obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+    }
+</script>
+</html>

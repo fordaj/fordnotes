@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>fordnotes: Installation</title>
+    <!-- BEGIN highlight.js -->
+      <link rel="stylesheet" href="highlight/styles/default.min.css">
+        <script src="highlight/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+    <!-- END highlight.js -->
+</head>
+<body>
+<header>Installation</header>
+    <div>
+        <header>Verify Install</header>
+        <div class="command"></div>
+        <button class="version">Windows 10</button>
+        <p class="content">Verify you've successfully installed your SSH tool with the following:</p>
+        <pre>  
+        <code class="language-powershell">Get-WindowsCapability -Online | ? Name -like 'OpenSSH*'</code>  
+        </pre> 
+        <div class="expected-output"></div>
+        <button class="version">Windows 10</button>
+        <p class="content">Expected output:</p>
+        <pre>  
+        <code class="language-plaintext">Name : OpenSSH.Client~~~~0.0.1.0
+    State : Installed
+
+    Name : OpenSSH.Server~~~~0.0.1.0
+    State : NotPresent</code>
+        </pre> 
+    </div>
+</body>
+</html>

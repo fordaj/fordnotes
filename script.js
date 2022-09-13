@@ -5,3 +5,20 @@ function renderInput(name){
         elements[i].innerHTML = input.value;
     }
 }
+
+function toggleDisplay(x)
+{
+    if (document.getElementById(x).style.display == 'block') {
+		document.getElementById(x).style.display = 'none';
+	} else {
+		document.getElementById(x).style.display = 'block';
+	}
+    console.log('hey')
+}
+
+function copy(element)
+{
+    var str = element;
+    window.getSelection().selectAllChildren(str);
+    document.execCommand("Copy")
+}

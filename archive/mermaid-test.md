@@ -1,0 +1,39 @@
+# PHX-BFW-001
+The requirement text goes here.
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#33cc33', 'noteBkgColor': '#ffffff', 'signalColor': '#ffffff', 'primaryTextColor':'#ffffff'}}}%%
+sequenceDiagram
+    participant sy as System
+    participant st as Self Test
+    participant cc as CC1101
+    participant bt as Bluetooth
+    participant io as IO
+    participant pm as Power Management
+    Note over bt: Receives RF-type packet from bt
+    Note over bt: Responds to mobile device <br>'pending' (or reject)
+    Note over bt: Loads RF Message into <br>global buffer
+    Note over bt: Alerts System task
+    bt->>sy     : ev_DataIntegrityMessage
+    Note over sy: makes sure system is ready <br>(not in selftest, error etc.)
+    Note over sy: action based on <br>IDP connection status
+    sy->>cc     : ev_DataIntegrityMessage
+    Note over cc: send RF packet from buffer to IDP
+    cc->>sy     : ev_DataIntegrityMessage_cmdsuccess (bool)
+    Note over sy: Based on Success, System <br>forwards received message or <br>generated error message <br>DI if RF Retries exhausted 
+    sy->>bt     : ev_DataIntegrityMessageBLEresp
+    loop Until all segments are sent
+        Note over bt: Bluetooth Responds to <br>mobile device with results of <br> IDP comm (and resolution <br> of 'pending' state)
+        bt->>sy: ev_DataIntegrityMessageBLEresp
+        Note over sy: System will ask radio <br>task if there are <br> any segments remaining
+        sy->>cc: ev_QueryMultisegmentComplete
+        alt Segments remain to be forwarded
+            cc->>sy: ev_QueryMultisegmentComplete (bool) = True
+            sy->>bt: ev_DataIntegrityMessageBLEresp
+        else No segments remain to be forwarded
+            cc->>sy: ev_QueryMultisegmentComplete (bool) = False
+        end
+    end
+    Note over sy: System marks transmission as complete
+```
+# PHX-BFW-002
+The second requirement text goes here
