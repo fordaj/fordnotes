@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>fordnotes SSH: Key Generation</title>
+	<title>fordnotes: Virtual Machines</title>
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js"></script>
     <!-- BEGIN highlight.js -->
@@ -10,23 +10,124 @@
     <script src="/highlight/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
     <!-- END highlight.js -->
+    <!-- BEGIN mermaid.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.13.4/mermaid.min.js"></script>  
+    <script>mermaid.initialize({startOnLoad:true, securityLevel:'loose'});</script>
+    <!-- END mermaid.js -->
 </head>
 <body>
-    <section>
-        <h1>Virtual Machines</h1>
-        <div class="versions">
-            <button class="version in-progress">Mac OS</button>
-            <button class="version in-progress">MacOS Monterey</button>
-            <button class="version in-progress">VMWare Fusion</button>
-        </div>
-        <h2>Increase VM Size on Host</h2>
-        <div class="vmware-fusion macos macos-monterey macos-monterey-12_5_1">
-            <ul>
-                <li><span class="term">Client</span>: The PC you're typing on</li>
-                <li><span class="term">Host</span>: The PC you're connecting to</li>
-                <li>Most SSH keys should have a password for security reasons.</li>
-            </ul>
-        </div>
+    <div class="navbar top">
+        <a href="../../index.html">Home</a>
+        <div class="dropdown">
+          <button class="dropbtn">Coding 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="../../Coding/Python/index.html">Python</a>
+            <a href="../../Coding/shell.html">Shell</a>
+          </div>
+        </div> 
+        <div class="dropdown">
+          <button class="dropbtn">Computers 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="../../Computers/Virtual_Machines/index.html">Virtual Machines</a>
+          </div>
+        </div> 
+        <div class="dropdown">
+          <button class="dropbtn">Networking 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="../../Networking/SSH/index.html">SSH</a>
+          </div>
+        </div> 
+    </div>
+
+    <section class="container">
+        <section class="left">
+            <div class="mermaid">  
+            flowchart TB  
+                %% Class Definitions
+                classDef NotStarted fill:#f76a6a,stroke:#000
+                classDef InProgress fill:#ffa500,stroke:#000
+                classDef Completed fill:#229901,stroke:#000
+    
+                %% Class Assignments
+                A[Installation]:::NotStarted
+                B[Increase VM Size]:::InProgress
+                C[Configuration]:::InProgress
+                D[Usage]:::NotStarted
+                E[Export VM]:::NotStarted
+                F[Import VM]:::NotStarted
+                G[Troubleshooting]:::NotStarted
+                H[Host OS Running Slow]:::NotStarted
+                I[Guest OS Running Slow]:::NotStarted
+
+                %% Flowchart
+                A --> C
+                subgraph C[Configuration]
+                  B
+                end
+                C --> D
+                subgraph D[Usage]
+                  E & F
+                end
+                C --> G
+                subgraph G[Troubleshooting]
+                  H & I
+                end
+    
+                %% Click Events
+                click B call toggleDisplay("increase_vm_size")
+            </div>  
+        </section>
+        <section class="right">
+            <section class="introduction">
+                <h1>Key Generation</h1>
+                <h2>Definitions</h2>
+                <div>
+                    <ul>
+                        <li><span class="term">Client</span>: The PC you're typing on</li>
+                        <li><span class="term">Host</span>: The PC you're connecting to</li>
+                        <li>Most SSH keys should have a password for security reasons.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="entry" id="increase_vm_size">
+                <div class="versions">
+                    <button class="version in-progress">Mac OS</button>
+                    <button class="version in-progress">MacOS Monterey</button>
+                    <button class="version in-progress">VMWare Fusion</button>
+                </div>
+                <h2>Increase VM Size</h2>
+                <div class="vmware-fusion macos macos-monterey macos-monterey-12_5_1">
+                    <p>Typically, a good workflow for managing VM size is to increase the drive allocation in increments as it fills up. This requires the user to watch for symptoms of a full disk (failing app installs, etc.). This happens in two parts:</p>
+                    <ol>
+                      <li>Increasing the disk allocation in the host OS's virtualization app</li>
+                      <li>Utilizing the newly available disk space within the guest virtual machine</li>
+                    </ol>
+                    <h3>Increase Disk Allocation in Host App</h3>
+                    <ol>
+                      <li>With the VM open, click <span class="navigation-path">Virtual Machines / Settings / Hard Disk</span>, and adjust the disk space here</li>
+                    </ol>
+                    <h3>Allocate Disk Space Within Guest VM</h3>
+                    <ol>
+                      <li>Install GParted</li>
+                      <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-bash">sudo apt update && sudo apt upgrade -y && sudo apt install gparted</code><p class="language">bash</p></pre>
+                      <li>Use GParted to allocate the newly available disk space within the guest VM. Launch via the application menu or via terminal.</li>
+                    </ol>
+                </div>
+            </section>
+            
+        </section>
     </section>
+
+
+
+
+    
 </body>
 </html>
