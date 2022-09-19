@@ -80,13 +80,13 @@
                     <button class="version in-progress">Mac OSX</button>
                 </div>
                 <div class="command macos macosx macos-big-sur macos-monterey">
-                    Title: <input type="text" placeholder="Title" class="key-type" onchange="renderInput('title')"><br>
-                    Description: <input type="text" placeholder="Description" class="key-bits" onchange="renderInput('description')"><br>
+                    Title: <input type="text" placeholder="Title" class="title" onchange="renderInput('title')"><br>
+                    Description: <input type="text" placeholder="Description" class="description" onchange="renderInput('description')"><br>
                     <ul>
                         <li>In terminal</li>
-                        <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-bash">osascript -e 'display notification "<span class="description">Description</span>" with title "<span class="title">Title</span>"'</code><p class="language">sh</p></pre>
+                        <pre><button onclick="copy(nextSibling)">Copy</button><code class="nohighlight">osascript -e 'display notification "<span class="description">Description</span>" with title "<span class="title">Title</span>"'</code><p class="language">sh</p></pre>
                         <li>In shell script</li>
-                        <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-bash">/usr/bin/osascript -e 'display notification "Description" with title "Title"'</code><p class="language">sh</p></pre>
+                        <pre><button onclick="copy(nextSibling)">Copy</button><code class="nohighlight">/usr/bin/osascript -e 'display notification "<span class="description">Description</span>" with title "<span class="title">Title</span>"'</code><p class="language">sh</p></pre>
                     </ul>
                 </div>
             </section>
