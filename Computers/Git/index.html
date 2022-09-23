@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>fordnotes: Git</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+    <!-- BEGIN highlight.js -->
+    <link rel="stylesheet" href="/highlight/styles/default.min.css">
+    <script src="/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <!-- END highlight.js -->
+    <!-- BEGIN mermaid.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.13.4/mermaid.min.js"></script>  
+    <script>mermaid.initialize({startOnLoad:true, securityLevel:'loose'});</script>
+    <!-- END mermaid.js -->
+</head>
+<body>
+    
+
+    <section class="container">
+        <section class="left">
+            <div class="mermaid">  
+            flowchart TB  
+                %% Class Definitions
+                classDef NotStarted fill:#f76a6a,stroke:#000
+                classDef InProgress fill:#ffa500,stroke:#000
+                classDef Completed fill:#229901,stroke:#000
+    
+                %% Class Assignments
+                A[Clone Into Specific Branch]:::NotStarted
+                B[Usage]:::NotStarted
+                C[Errors]:::InProgress
+                D[Index Lock File Exists]:::InProgress
+
+                %% Flowchart
+                subgraph B[Usage]
+                  A
+                end
+
+                subgraph C[Errors]
+                  D
+                end
+    
+                %% Click Events
+                click A call toggleDisplay("CloneIntoSpecificBranch")
+                click D call toggleDisplay("IndexLockFileExists")
+            </div>  
+        </section>
+        <section class="right">
+            <section class="introduction">
+                <h1>Git</h1>
+                <h2>Definitions</h2>
+                <div>
+                    Definitions go here
+                </div>
+            </section>
+            
+            <section class="entry" id="IndexLockFileExists">
+                <div class="versions">
+                    <button class="version in-progress">Windows 10</button>
+                </div>
+                <h2>Index Lock File Exists</h2>
+                <p class="ErrorMessage">Git - fatal: Unable to create '/path/my_project/.git/index.lock': File exists</p>
+                <p class="Content">Delete the index.lock file, either through your File Explorer, or with the following command:</p>
+                <a href="https://stackoverflow.com/questions/7860751/git-fatal-unable-to-create-path-my-project-git-index-lock-file-exists">Stack Overflow Post</a>
+                <div class="Windows10">
+                    <pre><button onclick="copy(nextSibling)">Copy</button><code class="language-bash">rm -f ./.git/index.lock</code><p class="language">bash</p></pre>
+                </div>
+                <p class="Note">Note: If the file cannot be deleted, restart your PC or end all git.exe tasks in Task Manager.</p>
+            </section>
+            
+        </section>
+    </section>
+
+
+
+
+    
+</body>
+</html>
