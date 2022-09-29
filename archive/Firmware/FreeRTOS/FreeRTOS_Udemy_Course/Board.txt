@@ -1,3 +1,0 @@
-[Back](index.md)
-
-STM32F446RE MCU NUCLEO-F446RE
