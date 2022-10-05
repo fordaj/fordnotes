@@ -1,10 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function NavBar({ Pages }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const expand = () => {
-    setIsVisible(!isVisible);
-  };
   return (
     <ul>
       {
@@ -19,7 +15,7 @@ export default function NavBar({ Pages }) {
               );
             }
             return (
-              <li onClick={expand} key={Page.Title}>
+              <li key={Page.Title}>
                 <a href={Page.URL}>{Page.Title}</a>
               </li>
             );
