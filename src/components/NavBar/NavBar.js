@@ -6,7 +6,6 @@ export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInput: '',
       Pages: [
         {
             Title: "Home",
@@ -87,6 +86,22 @@ export default class NavBar extends React.Component {
             <a href={Page.URL}>{Page.Title}</a>
             <ul>
               {Page.Subpages.map((Subpage, j) => {
+                if (Subpage.Subsubpages !== undefined){
+                  return (
+                    <li key={i*100+j} className={Subpage.Classes}>
+                      <a href={Subpage.URL}>{Subpage.Title}</a>
+                      <ul>
+                        {Subpage.Subsubpages.map((Subsubpage, k) => {
+                          return (
+                          <li key={i*10000+j*100+k} className={Subsubpage.Classes}>
+                            <a href={Subsubpage.URL}>{Subsubpage.Title}</a>
+                          </li>
+                          )
+                        })}
+                      </ul>
+                    </li>
+                  )
+                }
                 return (
                   <li key={i*100+j} className={Subpage.Classes}>
                     <a href={Subpage.URL}>{Subpage.Title}</a>
