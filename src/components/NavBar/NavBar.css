@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+/* 
+.NavBar {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    color: white;
+}
+
+.NavBar-Logo {
+    display: inline;
+    flex-grow: 1;
+}
+
+.NavBar-Page {
+    display: flex;
+    text-decoration: none;
+    justify-self: end;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+} */

@@ -1,50 +1,10 @@
-import './App.css';
-import React from 'react';
+import "./App.css"
+import NavBar from "./components/NavBar/NavBar";
 
-
-class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <p>NavBar</p>
-    );
-  }
+export default function App() {
+  return (
+    <div className="App">
+      <NavBar />
+    </div>
+  );
 }
-
-class Mermaid extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <p>Mermaid</p>
-    );
-  }
-}
-
-class Content extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <p>Content</p>
-    );
-  }
-}
-
-const AppJSX = (
-  <div className="App">
-    <NavBar />
-    <Mermaid />
-    <Content />
-  </div>
-);
-
-function App() {
-  return AppJSX;
-}
-
-export default App;
