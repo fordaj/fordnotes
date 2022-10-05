@@ -1,129 +1,31 @@
-import React from "react";
-// import { Pages } from "./Pages";
-// import "./NavBar.css" 
+import React, { useState } from "react";
 
-export default class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Pages: [
-        {
-            Title: "Home",
-            URL: "#",
-            Classes: "NavBar-Page"
-        },
-        {
-            Title: "Coding",
-            URL: "#",
-            Classes: "NavBar-Page",
-            Subpages: [
-              {
-                Title: "Python",
-                URL: "#",
-                Classes: "NavBar-Subpage",
-                Subsubpages: [
-                  {
-                    Title: "Tensorflow",
-                    URL: "#",
-                    Classes: "NavBar-Subsubpage"
-                  },
-                  {
-                    Title: "PyTorch",
-                    URL: "#",
-                    Classes: "NavBar-Subsubpage"
-                  }
-                ]
-              },
-              {
-                Title: "React",
-                URL: "#",
-                Classes: "NavBar-Subpage"
-              },
-              {
-                Title: "Shell",
-                URL: "#",
-                Classes: "NavBar-Subpage"
-              }
-            ]
-        },
-        {
-            Title: "Computers",
-            URL: "#",
-            Classes: "NavBar-Page",
-            Subpages: [
-              {
-                Title: "Git",
-                URL: "#",
-                Classes: "NavBar-Subpage"
-              },
-              {
-                Title: "Virtual Machines",
-                URL: "#",
-                Classes: "NavBar-Subpage"
-              }
-            ]
-        },
-        {
-            Title: "Networking",
-            URL: "#",
-            Classes: "NavBar-Page",
-            Subpages: [
-              {
-                Title: "SSH",
-                URL: "#",
-                Classes: "NavBar-Subpage"
-              }
-            ]
-        }
-      ]
-    }
-  }
-  render() {
-    const items = this.state.Pages.map((Page, i) => {
-      if (Page.Subpages !== undefined){
-        return (
-          <li key={i} className={Page.Classes}>
-            <a href={Page.URL}>{Page.Title}</a>
-            <ul>
-              {Page.Subpages.map((Subpage, j) => {
-                if (Subpage.Subsubpages !== undefined){
-                  return (
-                    <li key={i*100+j} className={Subpage.Classes}>
-                      <a href={Subpage.URL}>{Subpage.Title}</a>
-                      <ul>
-                        {Subpage.Subsubpages.map((Subsubpage, k) => {
-                          return (
-                          <li key={i*10000+j*100+k} className={Subsubpage.Classes}>
-                            <a href={Subsubpage.URL}>{Subsubpage.Title}</a>
-                          </li>
-                          )
-                        })}
-                      </ul>
-                    </li>
-                  )
-                }
-                return (
-                  <li key={i*100+j} className={Subpage.Classes}>
-                    <a href={Subpage.URL}>{Subpage.Title}</a>
-                  </li>
-                )})}
-            </ul>
-          </li>
+export default function NavBar({ Pages }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const expand = () => {
+    setIsVisible(!isVisible);
+  };
+  return (
+    <ul>
+      {
+        Pages.map(
+          (Page) => {
+            if (Page.Pages !== undefined){
+              return (
+                <li key={Page.Title}>
+                  <a href={Page.URL}>{Page.Title}</a>
+                  <NavBar Pages={Page.Pages} />
+                </li>
+              );
+            }
+            return (
+              <li onClick={expand} key={Page.Title}>
+                <a href={Page.URL}>{Page.Title}</a>
+              </li>
+            );
+          }
         )
       }
-      return (
-        <li className={Page.Classes}>
-          <a href={Page.URL}>{Page.Title}</a>
-        </li>
-      )
-    });
-    
-    return (
-      <div>
-        <ul>
-          {items}
-        </ul>
-      </div>
-    );
-  }
-};
+    </ul>
+  );
+}
