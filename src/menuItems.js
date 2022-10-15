@@ -23,4 +23,14 @@ export const menuItems = [
       },
     ],
   },
+  {
+    title: 'Firmware',
+    url: '/Firmware',
+    submenu: [
+      {
+        title: 'RAMTest',
+        url: '/RAMTest',
+      },
+    ],
+  },
 ];
