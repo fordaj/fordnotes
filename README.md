@@ -5,12 +5,17 @@ A Markdown Driven React App purpose-built for knowledge reusability.
 Andrew Ford and Kailey Waal
 
 ## Build Deployment
-1. Run pre-deployment scripts to update `FileStructure.jsx`
+1. Run pre-start scripts to update `FileStructure.jsx` and format MDX
 ```bash
-./PreDeploy.sh
+npm run prestart
 ```
 
-2. Deploy
+2. Verify changes are correct
 ```bash
-./Deploy.sh
+npm start
+```
+
+3. Deploy
+```bash
+npm run deploy
 ```
