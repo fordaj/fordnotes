@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+// Author: Ibadehin Mojeed
+// https://blog.logrocket.com/how-create-multilevel-dropdown-menu-react/
+import { Routes, Route } from 'react-router-dom';
+import Home from './routes/Home';
+import Python from './routes/Python';
+import Layout from './components/Layout';
+import Git from './routes/Git';
+import VirtualMachines from './routes/VirtualMachines';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="Python" element={<Python />} />
+          <Route path="Git" element={<Git />} />
+          <Route path="VirtualMachines" element={<VirtualMachines />} />
+          <Route path="*" element={<p>Not found!</p>} />
+        </Route>
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;
